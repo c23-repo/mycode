@@ -4,9 +4,6 @@ vendors = ["cisco", "juniper", "big_ip", "f5", "arista", "alta3", "zach", "stuar
 # create a second list of strings
 approved_vendors = ["cisco", "juniper", "big_ip"]
 # loop across the list called vendors
-farms = [{"name": "NE Farm", "agriculture": ["sheep", "cows", "pigs", "chickens", "llamas", "cats"]},
-         {"name": "W Farm", "agriculture": ["pigs", "chickens", "llamas"]},
-         {"name": "SE Farm", "agriculture": ["chickens", "carrots", "celery"]}]
 
 for x in vendors:
     print("\nThe vendor is " + x, end="")   # newline, print current vendor, and end without newline
