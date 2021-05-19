@@ -74,15 +74,8 @@ class Player:
                     new_item.upper() == 'TROLL':
                 print("You can't collect this character.")
             # checking the inventory, player can't have more than 5 items at a time
-            elif len(self.inventory) <= 5:
-                # add the item to their inventory
-                self.inventory.append(new_item)
-                # display a helpful message
-                print(new_item + ' taken!')
-                # delete the item from the room
-                self.room.items.remove(new_item)
 
-            else:
+            elif len(self.inventory) == 5:
                 print("Your inventory is full! Do you want to drop an item?")
                 drop_item = input('Yes or No: ').lower()
                 if drop_item == "yes":
@@ -101,6 +94,13 @@ class Player:
                     print(new_item + ' taken!')
                 else:
                     print("You have kept all your items")
+            else:
+                # add the item to their inventory
+                self.inventory.append(new_item)
+                # display a helpful message
+                print(new_item + ' taken!')
+                # delete the item from the room
+                self.room.items.remove(new_item)
         # otherwise, if the item isn't there to get
         else:
             # tell them they can't get it
