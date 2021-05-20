@@ -65,6 +65,21 @@ class Player:
         else:
             print('NOT WORKING AHHHH!')
 
+    def item_swap(self, new_item):
+        for count, item in enumerate(self.inventory, 0):
+            print(f'{count + 1})  {item}')
+        item_dropped = input("please enter the number for the item you want to drop:")
+        # add the dropped item from their inventory to the room item list
+        self.room.items.append(self.inventory[int(item_dropped) - 1])
+        # remove the item to their inventory
+        self.inventory.remove(self.inventory[int(item_dropped) - 1])
+        # add the item to their inventory
+        self.inventory.append(new_item)
+        # remove item from the room items
+        self.room.items.remove(new_item)
+        # display a helpful message
+        print(new_item + ' taken!')
+
     def player_get(self, new_item):
         # if the room contains an item, and the item is the one they want to get
         if "item" in self.room.neighbors_and_Items and new_item in self.room.items:
@@ -79,19 +94,7 @@ class Player:
                 print("Your inventory is full! Do you want to drop an item?")
                 drop_item = input('Yes or No: ').lower()
                 if drop_item == "yes":
-                    for count, item in enumerate(self.inventory, 0):
-                        print(f'{count + 1})  {item}')
-                    item_dropped = input("please enter the number for the item you want to drop:")
-                    # add the dropped item from their inventory to the room item list
-                    self.room.items.append(self.inventory[int(item_dropped) - 1])
-                    # remove the item to their inventory
-                    self.inventory.remove(self.inventory[int(item_dropped) - 1])
-                    # add the item to their inventory
-                    self.inventory.append(new_item)
-                    # remove item from the room items
-                    self.room.items.remove(new_item)
-                    # display a helpful message
-                    print(new_item + ' taken!')
+                    self.item_swap(new_item)
                 else:
                     print("You have kept all your items")
             else:
@@ -181,8 +184,7 @@ class Player:
             # check that they are allowed wherever they want to go
             self.player_inspect(possible_action[1].upper())
 
-
-         # if they type 'get' first
+        # if they type 'get' first
         elif possible_action[0] == 'get':
 
             # if the room contains an item, and the item is the one they want to get
